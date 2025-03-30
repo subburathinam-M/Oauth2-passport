@@ -4,8 +4,7 @@
 
 OAuth2 authentication using Laravel Passport in a PHP project with API token-based authentication. 
 
-📌 Project Overview
-
+## 📌 Project Overview
 This project implements OAuth2 authentication using Laravel Passport for API authentication. It includes user registration, login, and token-based authentication.
 
 ---
@@ -58,6 +57,49 @@ Ensure you have [Composer](https://getcomposer.org/) installed. Then, run the fo
 ```sh
 composer install
 ```
+## 🚀 Installation Guide
+
+### 1️⃣ Clone the Repository
+```bash
+$ git clone https://github.com/your-username/oauth2-passport.git
+$ cd oauth2-passport
+```
+
+### 2️⃣ Install Dependencies
+```bash
+$ composer install
+```
+
+### 3️⃣ Set Up Environment
+```bash
+$ cp .env.example .env
+$ php artisan key:generate
+```
+
+### 4️⃣ Configure Database
+- Update `.env` file with your database credentials.
+- Run migrations:
+```bash
+$ php artisan migrate
+```
+
+### 5️⃣ Install & Configure Laravel Passport
+```bash
+$ php artisan passport:install
+```
+
+### 6️⃣ Clear and Cache Configurations
+```bash
+$ php artisan config:clear
+$ php artisan cache:clear
+$ php artisan view:clear
+```
+
+### 7️⃣ Start the Development Server
+```bash
+$ php artisan serve
+```
+
 
 ### 📌 2. Configure Environment
 
@@ -134,16 +176,29 @@ php artisan serve
 ```
 
 ---
-## 🚀 API Endpoints
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| POST | `/api/register` | User Registration |
-| POST | `/api/login` | User Login |
-| GET | `/api/user` | Get Authenticated User |
+## 🔑 API Endpoints
+| Method | Endpoint        | Description       |
+|--------|----------------|------------------|
+| 📝 POST  | `/api/register` | Register a new user |
+| 🔑 POST  | `/api/login`    | User login       |
+| 🔍 GET   | `/api/user`     | Get user details (Auth required) |
 
 ---
-## ⚡ Running XAMPP
+
+## ⚙️ Useful Commands
+| Command | Description |
+|---------|-------------|
+| 🛠️ `php artisan serve` | Start Laravel development server |
+| 📦 `composer install` | Install project dependencies |
+| 🎯 `php artisan key:generate` | Generate app key |
+| 📊 `php artisan migrate` | Run migrations |
+| 🔄 `php artisan passport:install` | Install Laravel Passport |
+| 🧹 `php artisan config:clear` | Clear configuration cache |
+| 🗑️ `php artisan cache:clear` | Clear application cache |
+| 👁️ `php artisan view:clear` | Clear compiled views |
+| ⚡ `npm run dev` | Compile front-end assets (if applicable) |
+
+## 🖥️ Running on XAMPP
 
 Ensure Apache and MySQL are running in XAMPP:
 
@@ -152,6 +207,7 @@ Ensure Apache and MySQL are running in XAMPP:
 3. Access phpMyAdmin at `http://localhost/phpmyadmin`
 
 ---
+
 ## 🎯 Run Passport Token Generation
 
 ```sh
@@ -179,9 +235,7 @@ curl -X GET "http://localhost:8000/api/user" -H "Authorization: Bearer {token}"
 ```
 
 ---
-## 📢 Contributing
 
-Feel free to submit issues or pull requests for improvements!
 
 ---
 ## 📜 License
