@@ -1,12 +1,12 @@
-# Oauth2-passport
-OAuth2 authentication using Laravel Passport in a PHP project with API token-based authentication. 
 
 
 # OAuth2 Passport Authentication in Laravel
 
-🚀 **OAuth2 Authentication using Laravel Passport**
+OAuth2 authentication using Laravel Passport in a PHP project with API token-based authentication. 
 
-This project demonstrates implementing OAuth2 authentication using Laravel Passport in a PHP project.
+📌 Project Overview
+
+This project implements OAuth2 authentication using Laravel Passport for API authentication. It includes user registration, login, and token-based authentication.
 
 ---
 ## 📂 Project Structure
