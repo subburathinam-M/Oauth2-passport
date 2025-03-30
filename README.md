@@ -73,6 +73,18 @@ $ composer install
 ### 3️⃣ Set Up Environment
 ```bash
 $ cp .env.example .env
+
+- Set up database details in `.env`:
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=your_database
+DB_USERNAME=root
+DB_PASSWORD=
+```
+### Generate Application Key
+
 $ php artisan key:generate
 ```
 
@@ -83,7 +95,7 @@ $ php artisan key:generate
 $ php artisan migrate
 ```
 
-### 5️⃣ Install & Configure Laravel Passport
+### 5️⃣ Install & Configure Laravel Passport( Install Passport Encryption Keys)
 ```bash
 $ php artisan passport:install
 ```
@@ -154,7 +166,18 @@ public function boot()
 }
 ```
 
-### 📌 5. Configure Authentication Guards
+###  📌  5. Update `User.php` Model
+```php
+use Laravel\Passport\HasApiTokens;
+
+class User extends Authenticatable
+{
+    use HasApiTokens, HasFactory, Notifiable;
+}
+```
+
+
+### 📌 6. Configure Authentication Guards
 
 Modify `config/auth.php`:
 
@@ -167,12 +190,17 @@ Modify `config/auth.php`:
 ],
 ```
 
-### 📌 6. Run Development Server
+### 📌 7. Run Development Server
 
 Start Laravel's built-in server:
 
 ```sh
 php artisan serve
+By default, the app runs at `http://127.0.0.1:8000`
+
+### Run Vite for Frontend Assets
+```sh
+npm run dev
 ```
 
 ---
@@ -184,6 +212,65 @@ php artisan serve
 | 🔍 GET   | `/api/user`     | Get user details (Auth required) |
 
 ---
+
+## Testing API with Postman
+1. Register a new user:
+   - Endpoint: `POST /api/register`
+   - Body:
+     ```json
+     {
+       "name": "John Doe",
+       "email": "johndoe@example.com",
+       "password": "password123"
+     }
+     ```
+
+2. Login and get an access token:
+   - Endpoint: `POST /api/login`
+   - Response:
+     ```json
+     {
+       "access_token": "your-access-token",
+       "token_type": "Bearer",
+       "expires_in": 3600
+     }
+     ```
+
+3. Access user profile (Authenticated Request):
+   - Endpoint: `GET /api/user`
+   - Headers:
+     ```json
+     {
+       "Authorization": "Bearer your-access-token"
+     }
+     ```
+
+## Additional Commands
+
+### Clear Cache
+```sh
+php artisan cache:clear
+php artisan config:clear
+php artisan route:clear
+php artisan view:clear
+```
+
+### Run Tests
+```sh
+php artisan test
+```
+
+### Stop Server
+```sh
+CTRL + C
+```
+
+## Pushing to GitHub
+```sh
+git add .
+git commit -m "Initial commit"
+git push origin main
+```
 
 ## ⚙️ Useful Commands
 | Command | Description |
@@ -241,6 +328,12 @@ curl -X GET "http://localhost:8000/api/user" -H "Authorization: Bearer {token}"
 ## 📜 License
 
 This project is open-source under the [MIT License](LICENSE).
+
+## Conclusion
+This project demonstrates Laravel Passport authentication for API-based user login, registration, and profile retrieval. You can extend it further to include features like email verification and password reset.
+
+---
+Feel free to customize the project or contribute to improve it!
 
 ---
 ### 🎉 Happy Coding! 🚀
