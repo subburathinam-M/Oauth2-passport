@@ -8,6 +8,80 @@ OAuth2 authentication using Laravel Passport in a PHP project with API token-bas
 This project implements OAuth2 authentication using Laravel Passport for API authentication. It includes user registration, login, and token-based authentication.
 
 ---
+
+# Laravel OAuth2 Passport Setup
+
+## 🚨 Problem Statement
+After cloning the project, the Laravel application fails to run due to missing dependencies and outdated configurations. The error messages include:
+- `Failed to open stream: No such file or directory in artisan on line 18`
+- `vendor/autoload.php not found`
+- `Lock file is not up to date with composer.json`
+
+## ✅ Solution: Step-by-Step Installation Guide
+
+Follow these steps to properly set up and run the project:
+
+### 📂 Step 1: Copy Project to `htdocs`
+1. Clone the repository.
+2. Move the project folder into `C:\xampp\htdocs`.
+
+### ⚙️ Step 2: Configure `.env` File
+1. Rename `.env.example` to `.env` (if not already done).
+2. Update database credentials:
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=your_database_name
+   DB_USERNAME=root
+   DB_PASSWORD=your_password
+   ```
+
+### 🗑️ Step 3: Remove `composer.lock`
+1. Navigate to the project folder.
+2. Delete `composer.lock`:
+   ```sh
+   rm composer.lock   # For Linux/Mac
+   del composer.lock   # For Windows
+   ```
+
+### 🔄 Step 4: Install Dependencies
+Run the following command to install Laravel dependencies:
+```sh
+composer update
+```
+
+### 🔑 Step 5: Generate Application Key
+```sh
+php artisan key:generate
+```
+
+### 🏗️ Step 6: Run Migrations
+```sh
+php artisan migrate
+```
+
+### 🚀 Step 7: Start the Server
+```sh
+php artisan serve
+```
+Your project should now be running at `http://127.0.0.1:8000` 🎉
+
+---
+
+### 📌 Notes
+- Ensure XAMPP's Apache and MySQL services are running.
+- If issues persist, clear cache and config:
+  ```sh
+  php artisan cache:clear
+  php artisan config:clear
+  ```
+- For Laravel Passport, run:
+  ```sh
+  php artisan passport:install
+  ```
+
+
 ## 📂 Project Structure
 
 ```
